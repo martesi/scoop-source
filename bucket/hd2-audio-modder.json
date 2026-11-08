@@ -9,6 +9,13 @@
             "hash": "2c1176e5da57dc7901ff5e26a8c6e217d98968c1b1aa18824fce509fc804f052"
         }
     },
+    "persist": [
+        "config.pickle",
+        "friendlynames.db",
+        "log.txt",
+        "log.txt.1",
+        "log.txt.2"
+    ],
     "bin": "audio_modder.exe",
     "shortcuts": [
         [
