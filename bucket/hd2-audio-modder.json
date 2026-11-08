@@ -16,6 +16,7 @@
         "log.txt.1",
         "log.txt.2"
     ],
+    "pre_install": "foreach ($file in @('config.pickle', 'friendlynames.db', 'log.txt', 'log.txt.1', 'log.txt.2')) { $source = Join-Path $dir $file; $target = Join-Path $persist_dir $file; if (-not (Test-Path -LiteralPath $target)) { New-Item -ItemType File -Path $source -Force | Out-Null } }",
     "bin": "audio_modder.exe",
     "shortcuts": [
         [
