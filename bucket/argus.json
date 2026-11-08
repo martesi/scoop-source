@@ -1,0 +1,31 @@
+{
+    "version": "0.4.0",
+    "description": "Native Windows task manager and system monitor",
+    "homepage": "https://github.com/Ray-lea/Argus",
+    "license": "AGPL-3.0",
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/Ray-lea/Argus/releases/download/v0.4.0/Argus_0.4.0_x64.exe",
+            "hash": "eef111d449b3f425283b316bc7af8346475e7de925f2991e75fdf4c5131b835c"
+        }
+    },
+    "pre_install": "Rename-Item \"$dir\\$fname\" 'Argus.exe'",
+    "bin": "Argus.exe",
+    "shortcuts": [
+        [
+            "Argus.exe",
+            "Argus"
+        ]
+    ],
+    "checkver": "github",
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/Ray-lea/Argus/releases/download/v$version/Argus_$version_x64.exe"
+            }
+        },
+        "hash": {
+            "mode": "github"
+        }
+    }
+}
