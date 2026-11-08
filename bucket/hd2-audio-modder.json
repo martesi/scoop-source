@@ -17,6 +17,8 @@
         "log.txt.2"
     ],
     "pre_install": "foreach ($file in @('config.pickle', 'friendlynames.db', 'log.txt', 'log.txt.1', 'log.txt.2')) { $source = Join-Path $dir $file; $target = Join-Path $persist_dir $file; if (-not (Test-Path -LiteralPath $target)) { New-Item -ItemType File -Path $source -Force | Out-Null } }",
+    "post_install": "foreach ($file in @('config.pickle', 'friendlynames.db', 'log.txt', 'log.txt.1', 'log.txt.2')) { $source = Join-Path $dir $file; $target = Join-Path $persist_dir $file; if (Test-Path -LiteralPath $target -PathType Leaf) { $item = Get-Item -LiteralPath $target; if ($item.Length -eq 0) { if (Test-Path -LiteralPath $source) { Remove-Item -LiteralPath $source -Force }; Remove-Item -LiteralPath $target -Force } } }",
+    "pre_uninstall": "foreach ($file in @('config.pickle', 'friendlynames.db', 'log.txt', 'log.txt.1', 'log.txt.2')) { $source = Join-Path $dir $file; $target = Join-Path $persist_dir $file; if (Test-Path -LiteralPath $source -PathType Leaf) { $item = Get-Item -LiteralPath $source; if (-not (Test-Path -LiteralPath $target) -or $item.LinkType -ne 'HardLink') { New-Item -ItemType Directory -Path (Split-Path $target) -Force | Out-Null; Copy-Item -LiteralPath $source -Destination $target -Force } } }",
     "bin": "audio_modder.exe",
     "shortcuts": [
         [
